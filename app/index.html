@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bet Tracking App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>Bet Tracking</h1>
+
+  <div class="bets-div">
+     <div class="stats-div">
+      <label id="winRateLabel">Win rate: </label>
+      <label id="winRateLabelValue"></label>
+      <label id="wonLabel">Won: </label>
+      <label id="wonLabelValue"></label>
+      <label id="balanceLabel">Balance: </label>
+      <label id="balanceLabelValue"></label>
+    </div>
+       
+  </div>
+  <div class="buttons-div">
+    <button id="betsBtn" onclick="openPlacedBets()">Show all bets</button>
+    <button id="refreshBetBtn" onclick="refreshPlacedBets()">Refresh</button>
+    <button id="teamsBtn" onclick="openTeamsStats()">Show teams statistics</button>
+    <button id="refreshTeamsBtn" onclick="refreshTeamsStats()">Refresh</button>
+  </div>
+
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
