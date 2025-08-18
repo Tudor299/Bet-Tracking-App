@@ -1,81 +1,55 @@
 body {
+  background-color: white;
+  color: #c20d0d;
   font-family: Arial, sans-serif;
-  text-align: center;
   padding-top: 50px;
-  background-color: white;
-  color: #c20d0d;
-}
-
-#betsLabel{
-  font-family: Arial, sans-serif;
-  font-size: 70px;
   text-align: center;
-  background-color: white;
-  color: #c20d0d;
 }
 
 button {
-  font-size: 18px;
-  padding: 10px 20px;
+  background-color: #292a2b;
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-  border-color: black;
+  color: white;
+  font-size: 25px;
+  height: 90px;
+  width: 150px;
 }
 
-.bets-div{
-  font-size: 40px;
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  margin-top: 200px;
+#name-header {
+  font-size: 45px;
 }
 
-.stats-div{
-  font: 70px;
+.stats-div {
+  font-size: 45px;
   display: grid;
   grid-template-columns: repeat(2, 2fr);
+  margin: auto;
+  margin-top: 100px;
+  max-width: 750px;
+  text-align: center;
+}
 
+.add-bet-div {
+  margin-top: 200px;
 }
 
 .buttons-div {
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   gap: 20px;
-  justify-items: center;
-  max-width: 300px;
+  max-width: 400px;
   margin: auto;
-  margin-top: 400px;
-  padding-top: 40px;
+  margin-top: 200px;
 }
 
-#betsBtn {
+#show-bets-button {
   background-color: #c20d0d;
-  color: white;
-  height: 60px;
   width: 200px;
 }
 
-#teamsBtn {
+#show-teams-stats-button {
   background-color: #c20d0d;
-  color: white;
-  height: 60px;
   width: 200px;
-}
-
-#refreshBetBtn {
-  background-color: #292a2b;
-  color: white;
-  height: 60px;
-  width: 100px;
-
-}
-
-#refreshTeamsBtn {
-  background-color: #292a2b;
-  color: white;
-  height: 60px;
-  width: 100px;
 }

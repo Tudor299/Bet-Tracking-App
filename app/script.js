@@ -1,23 +1,29 @@
 function openTeamsStats() {
-    window.open('viewer.html?file=football_statistics.xlsx', '_blank');
+    window.open('view_table.html?file=football_statistics.xlsx', '_blank');
 }
 
-function refreshPlacedBets() {
-    fetch('http://127.0.0.1:5000/refresh-bets')
-        .then(response => response.text())
-        .then(msg => alert(msg))
-        .catch(err => alert('Failed to run notebook'));
+async function refreshPlacedBets() {
+    const button = document.getElementById("refresh-bets-button");
+    button.disabled = true;
+    button.textContent = "Processing...";
+    const response = await fetch("http://127.0.0.1:8000/refresh_bets");
+    const data = await response.json();
+    button.disabled = false;
+    button.textContent = "Refresh";
 }
 
 function openPlacedBets() {
-    window.open('viewer.html?file=placed_bets.xlsx', '_blank')
+    window.open('view_table.html?file=placed_bets.xlsx', '_blank')
 }
 
-function refreshTeamsStats() {
-    fetch('http://127.0.0.1:5001/refresh-TM-Data')
-        .then(response => response.text())
-        .then(msg => alert(msg))
-        .catch(err => alert('Failed to run notebook'));
+async function refreshTeamsStats() {
+    const button = document.getElementById("refresh-teams-stats-button");
+    button.disabled = true;
+    button.textContent = "Processing...";
+    const response = await fetch("http://127.0.0.1:8000/refresh_teams");
+    const data = await response.json();
+    button.disabled = false;
+    button.textContent = "Refresh";
 }
 
 function getQueryParam(name) {
@@ -38,9 +44,9 @@ fetch('placed_bets.xlsx')
         const balance = sheet['T2'];
         const value_balance = balance ? balance.v : 'Cell not found';
 
-        document.getElementById('winRateLabelValue').textContent = value_won_perc + "%";
-        document.getElementById('wonLabelValue').textContent = value_won;
-        document.getElementById('balanceLabelValue').textContent = value_balance + "RON";
+        document.getElementById('win-rate-value-label').textContent = value_won_perc + "%";
+        document.getElementById('won-value-value').textContent = value_won;
+        document.getElementById('balance-value-label').textContent = value_balance + "RON";
     })
     .catch(err => {
         document.getElementById('cellValue').textContent = 'Error reading Excel file';
@@ -74,5 +80,3 @@ if (fileName) {
 } else {
     document.getElementById('output').textContent = 'No file specified.';
 }
-
-
