@@ -31,8 +31,15 @@ button {
   text-align: center;
 }
 
-.add-bet-div {
+.upload-div {
   margin-top: 200px;
+}
+
+#add-bet-button{
+  background-color: goldenrod;
+  font-size: 40px;
+  height: 100px;
+  width: 200px;
 }
 
 .buttons-div {

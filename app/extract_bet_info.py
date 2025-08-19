@@ -1,5 +1,5 @@
 import easyocr
-import os
+import glob, os
 import re
 import requests
 from datetime import datetime
@@ -349,3 +349,7 @@ for col in sheet.columns:
      sheet.column_dimensions[column].width = set_col_width
 
 wb.save(file_path)
+
+filelist = glob.glob(os.path.join(folder, "*.jpg"))
+for f in filelist:
+    os.remove(f)

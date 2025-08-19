@@ -1,5 +1,5 @@
-function openTeamsStats() {
-    window.open('view_table.html?file=football_statistics.xlsx', '_blank');
+function openPlacedBets() {
+    window.open('view_table.html?file=placed_bets.xlsx', '_blank')
 }
 
 async function refreshPlacedBets() {
@@ -7,13 +7,12 @@ async function refreshPlacedBets() {
     button.disabled = true;
     button.textContent = "Processing...";
     const response = await fetch("http://127.0.0.1:8000/refresh_bets");
-    const data = await response.json();
     button.disabled = false;
     button.textContent = "Refresh";
 }
 
-function openPlacedBets() {
-    window.open('view_table.html?file=placed_bets.xlsx', '_blank')
+function openTeamsStats() {
+    window.open('view_table.html?file=football_statistics.xlsx', '_blank');
 }
 
 async function refreshTeamsStats() {
@@ -21,7 +20,6 @@ async function refreshTeamsStats() {
     button.disabled = true;
     button.textContent = "Processing...";
     const response = await fetch("http://127.0.0.1:8000/refresh_teams");
-    const data = await response.json();
     button.disabled = false;
     button.textContent = "Refresh";
 }

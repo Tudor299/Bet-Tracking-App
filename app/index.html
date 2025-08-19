@@ -19,6 +19,11 @@
     <label id="balance-value-label"></label>
   </div>
 
+  <div class="upload-div">
+    <input type="file" id="file-input" multiple style="display:none" accept="image/*" onchange="uploadFiles()">
+    <button id="add-bet-button" onclick="document.getElementById('file-input').click()">Add bet</button>
+  </div>
+
   <div class="buttons-div">
     <button id="show-bets-button" onclick="openPlacedBets()">Show all bets</button>
     <button id="refresh-bets-button" onclick="refreshPlacedBets()">Refresh</button>
