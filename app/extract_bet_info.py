@@ -7,7 +7,7 @@ from openpyxl import load_workbook, Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 
 reader = easyocr.Reader(['en'])
-folder = r"D:\downloads"
+folder = os.getcwd()
 league = ""
 resp = ""
 
