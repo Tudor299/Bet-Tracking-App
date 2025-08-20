@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Bet Tracking App</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
@@ -20,8 +20,8 @@
   </div>
 
   <div class="upload-div">
-    <input type="file" id="file-input" multiple style="display:none" accept="image/*" onchange="uploadFiles()">
-    <button id="add-bet-button" onclick="document.getElementById('file-input').click()">Add bet</button>
+    <input id="file-input" type="file" accept="image/*" multiple style="display:none" />
+    <button id="add-bets-button">Add bet</button>
   </div>
 
   <div class="buttons-div">
@@ -33,6 +33,6 @@
 </body>
 
 <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-<script src="script.js"></script>
+<script src="/static/script.js"></script>
 
 </html>

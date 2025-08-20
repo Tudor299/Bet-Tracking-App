@@ -1,5 +1,40 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const fileInput = document.getElementById("file-input");
+    const uploadButton = document.getElementById("add-bets-button");
+
+    uploadButton.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", async (event) => {
+        const files = event.target.files;
+        if (!files.length) return;
+
+        const formData = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            formData.append("files", files[i]);
+        }
+
+        try {
+            const res = await fetch("/upload_images", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!res.ok) {
+                const text = await res.text();
+                alert("Upload failed: " + text);
+                return;
+            }
+
+            const result = await res.json();
+            alert("Uploaded files:\n" + result.saved.join("\n"));
+        } catch (err) {
+            alert("Error: " + err.message);
+        }
+    });
+});
+
 function openPlacedBets() {
-    window.open('view_table.html?file=placed_bets.xlsx', '_blank')
+    window.open('/static/view_table.html?file=http://127.0.0.1:8000/static/placed_bets.xlsx', '_blank');
 }
 
 async function refreshPlacedBets() {
@@ -12,7 +47,7 @@ async function refreshPlacedBets() {
 }
 
 function openTeamsStats() {
-    window.open('view_table.html?file=football_statistics.xlsx', '_blank');
+    window.open('/static/view_table.html?file=/static/football_statistics.xlsx', '_blank');
 }
 
 async function refreshTeamsStats() {
@@ -29,7 +64,7 @@ function getQueryParam(name) {
     return params.get(name);
 }
 
-fetch('placed_bets.xlsx')
+fetch('/static/placed_bets.xlsx')
     .then(res => res.arrayBuffer())
     .then(buffer => {
         const workbook = XLSX.read(buffer, { type: 'array' });
