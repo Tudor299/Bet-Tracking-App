@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function openPlacedBets() {
-    window.open('/static/view_table.html?file=http://127.0.0.1:8000/static/placed_bets.xlsx', '_blank');
+    const ts = new Date().getTime();
+    window.open('/static/view_table.html?file=http://127.0.0.1:8000/static/placed_bets.xlsx?ts=${ts}', '_blank');
 }
 
 async function refreshPlacedBets() {
@@ -44,10 +45,12 @@ async function refreshPlacedBets() {
     const response = await fetch("http://127.0.0.1:8000/refresh_bets");
     button.disabled = false;
     button.textContent = "Refresh";
+    window.location.reload();
 }
 
 function openTeamsStats() {
-    window.open('/static/view_table.html?file=/static/football_statistics.xlsx', '_blank');
+    const ts = new Date().getTime();
+    window.open('/static/view_table.html?file=/static/football_statistics.xlsx?ts=${ts}', '_blank');
 }
 
 async function refreshTeamsStats() {
@@ -57,6 +60,7 @@ async function refreshTeamsStats() {
     const response = await fetch("http://127.0.0.1:8000/refresh_teams");
     button.disabled = false;
     button.textContent = "Refresh";
+    window.location.reload();
 }
 
 function getQueryParam(name) {
