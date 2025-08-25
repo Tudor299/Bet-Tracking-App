@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
 from openpyxl import load_workbook, Workbook
 from openpyxl.styles import Alignment, Font
 
@@ -87,49 +86,77 @@ def retrieve_data(index, link, sect):
         if(value == '-'):
             data[i] = 0
 
-    #compute each field
+    # compute each field
     homeMatches = int(data[0])
     homeWins = int(data[1])
-    homeWins_p = round(homeWins / homeMatches * 100, 2)
     homeDraws = int(data[2])
-    homeDraws_p = round(homeDraws / homeMatches * 100, 2)
     homeLosses = int(data[3])
-    homeLosses_p = round(homeLosses / homeMatches* 100 , 2)
     homePoints = round(float(data[4]), 2)
-    homeGoals = data[5].split(":")
-    homeGoals_f = int(homeGoals[0])
-    homeGoals_f_v = round(homeGoals_f / homeMatches , 2)
-    homeGoals_a = int(homeGoals[1])
-    homeGoals_a_v = round(homeGoals_a / homeMatches, 2)
+
+    if homeMatches == 0:
+        homeWins_p = 0
+        homeDraws_p = 0
+        homeLosses_p = 0
+        homeGoals_f = 0
+        homeGoals_a = 0
+        homeGoals_f_v = 0
+        homeGoals_a_v = 0
+    else:
+        homeWins_p = round(homeWins / homeMatches * 100, 2)
+        homeDraws_p = round(homeDraws / homeMatches * 100, 2)
+        homeLosses_p = round(homeLosses / homeMatches* 100 , 2)
+        homeGoals = data[5].split(":")
+        homeGoals_f = int(homeGoals[0])
+        homeGoals_a = int(homeGoals[1])
+        homeGoals_f_v = round(homeGoals_f / homeMatches , 2)
+        homeGoals_a_v = round(homeGoals_a / homeMatches, 2)
     homeGD = homeGoals_f - homeGoals_a
 
     awayMatches = int(data[6])
     awayWins = int(data[7])
-    awayWins_p = round(awayWins / awayMatches * 100, 2)
     awayDraws = int(data[8])
-    awayDraws_p = round(awayDraws / awayMatches * 100, 2)
     awayLosses = int(data[9])
-    awayLosses_p = round(awayLosses / awayMatches* 100 , 2)
     awayPoints = round(float(data[10]), 2)
-    awayGoals = data[11].split(":")
-    awayGoals_f = int(awayGoals[0])
-    awayGoals_f_v = round(awayGoals_f / awayMatches, 2)
-    awayGoals_a = int(awayGoals[1])
-    awayGoals_a_v = round(awayGoals_a / awayMatches, 2)
+
+    if awayMatches == 0:
+        awayWins_p = 0
+        awayDraws_p = 0
+        awayLosses_p = 0
+        awayGoals_f = 0
+        awayGoals_a = 0
+        awayGoals_f_v = 0
+        awayGoals_a_v = 0
+    else:
+        awayWins_p = round(awayWins / awayMatches * 100, 2)
+        awayDraws_p = round(awayDraws / awayMatches * 100, 2)
+        awayLosses_p = round(awayLosses / awayMatches* 100 , 2)
+        awayGoals = data[11].split(":")
+        awayGoals_f = int(awayGoals[0])
+        awayGoals_a = int(awayGoals[1])
+        awayGoals_f_v = round(awayGoals_f / awayMatches, 2)
+        awayGoals_a_v = round(awayGoals_a / awayMatches, 2)
     awayGD = awayGoals_f - awayGoals_a
 
     totalMatches = homeMatches + awayMatches
     totalWins = homeWins + awayWins
-    totalWins_p = round(totalWins / totalMatches * 100, 2)
     totalDraws = homeDraws + awayDraws
-    totalDraws_p = round(totalDraws / totalMatches * 100 , 2)
     totalLosses = homeLosses + awayLosses
-    totalLosses_p = round(totalLosses / totalMatches * 100, 2)
-    totalPoints = round((3 * totalWins + totalDraws) / totalMatches, 2)
     totalGoals_f = homeGoals_f + awayGoals_f
-    totalGoals_f_v = round(totalGoals_f / totalMatches, 2)
     totalGoals_a = homeGoals_a + awayGoals_a
-    totalGoals_a_v = round(totalGoals_a / totalMatches, 2)
+    if totalMatches == 0:
+        totalWins_p = 0
+        totalDraws_p = 0
+        totalLosses_p = 0
+        totalPoints = 0
+        totalGoals_f_v = 0
+        totalGoals_a_v = 0
+    else:
+        totalWins_p = round(totalWins / totalMatches * 100, 2)
+        totalDraws_p = round(totalDraws / totalMatches * 100 , 2)
+        totalLosses_p = round(totalLosses / totalMatches * 100, 2)
+        totalPoints = round((3 * totalWins + totalDraws) / totalMatches, 2)
+        totalGoals_f_v = round(totalGoals_f / totalMatches, 2)
+        totalGoals_a_v = round(totalGoals_a / totalMatches, 2)
     totalGD = totalGoals_f - totalGoals_a
 
     #update Excel
@@ -260,9 +287,7 @@ index = 2
 
 for k,v in leagues.items():
     for i in v:
-        if k == "England":
-            sect = "/premier-league/startseite/wettbewerb/GB1/saison_id/2024"
-        elif k == "Spain":
+        if k == "Spain":
             if index == 2 + len(premierLeague):
                 sheet[f"A{index+1}"] = "La Liga"
                 index +=2

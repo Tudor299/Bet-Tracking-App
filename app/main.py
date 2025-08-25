@@ -9,6 +9,15 @@ app = FastAPI()
 BASE_DIR = Path(__file__).resolve().parent
 app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
 
+@app.middleware("http")
+async def no_cache(request, call_next):
+    response = await call_next(request)
+    if request.url.path.startswith("/static/"):
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+    return response
+
 @app.get("/")
 async def root():
     return FileResponse("index.html")
@@ -30,5 +39,5 @@ def extract_bet_info():
 
 @app.get("/refresh_teams")
 def get_teams_stats():
-    result = subprocess.run(["python3", "get_teams_stats.py"], capture_output=True, text=True)
+    result = subprocess.run(["python3", "get_teams_stats_24_25.py"], capture_output=True, text=True)
     return {"output": result.stdout}
