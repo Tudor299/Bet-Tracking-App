@@ -48,7 +48,7 @@ button {
   gap: 20px;
   max-width: 400px;
   margin: auto;
-  margin-top: 200px;
+  margin-top: 120px;
 }
 
 #show-bets-button {
@@ -59,4 +59,12 @@ button {
 #show-teams-stats-button {
   background-color: #c20d0d;
   width: 200px;
+}
+
+.season-div{
+  margin-top: 50px;
+}
+
+#select-season{
+  font-size: 20px;
 }
