@@ -37,7 +37,12 @@ def extract_bet_info():
     result = subprocess.run(["python3", "extract_bet_info.py"], capture_output=True, text=True)
     return {"output": result.stdout}
 
-@app.get("/refresh_teams")
+@app.get("/refresh_teams_24_25")
 def get_teams_stats():
     result = subprocess.run(["python3", "get_teams_stats_24_25.py"], capture_output=True, text=True)
+    return {"output": result.stdout}
+
+@app.get("/refresh_teams_25_26")
+def get_teams_stats():
+    result = subprocess.run(["python3", "get_teams_stats_25_26.py"], capture_output=True, text=True)
     return {"output": result.stdout}

@@ -60,7 +60,7 @@ leagues ={
         }
 
 # generate new Excel sheet
-file_path = "football_statistics.xlsx"
+file_path = "football_statistics_2024_25.xlsx"
 sheet_name = "Generated"
 wb = Workbook()
 wb.create_sheet(sheet_name)

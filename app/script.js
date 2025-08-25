@@ -50,14 +50,22 @@ async function refreshPlacedBets() {
 
 function openTeamsStats() {
     const ts = new Date().getTime();
-    window.open('/static/view_table.html?file=/static/football_statistics.xlsx?ts=${ts}', '_blank');
+    var season = document.getElementById('season-select').value;
+    if (season == "2024/2025")
+        window.open('/static/view_table.html?file=/static/football_statistics_2024_25.xlsx?ts=${ts}', '_blank');
+    else if (season == "2025/2026")
+        window.open('/static/view_table.html?file=/static/football_statistics_2025_26.xlsx?ts=${ts}', '_blank');
 }
 
 async function refreshTeamsStats() {
     const button = document.getElementById("refresh-teams-stats-button");
     button.disabled = true;
     button.textContent = "Processing...";
-    const response = await fetch("http://127.0.0.1:8000/refresh_teams");
+    var season = document.getElementById('season-select').value;
+    if (season == "2024/2025")
+        response = await fetch("http://127.0.0.1:8000/refresh_teams_24_25");
+    else if (season == "2025/2026")
+        response = await fetch("http://127.0.0.1:8000/refresh_teams_25_26");
     button.disabled = false;
     button.textContent = "Refresh";
     window.location.reload();
