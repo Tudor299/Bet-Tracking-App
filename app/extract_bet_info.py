@@ -13,45 +13,45 @@ resp = ""
 
 # teams dictionary
 premierLeague = {
-                "Arsenal" : "https://www.transfermarkt.com/fc-arsenal/spielplan/verein/11/saison_id/2024",
-                "Chelsea" : "https://www.transfermarkt.com/fc-chelsea/spielplan/verein/631/saison_id/2024",
-                "Liverpool" : "https://www.transfermarkt.com/fc-liverpool/spielplan/verein/31/saison_id/2024", 
-                "Manchester City" : "https://www.transfermarkt.com/manchester-city/spielplan/verein/281/saison_id/2024",
-                "Manchester United" : "https://www.transfermarkt.com/manchester-united/spielplan/verein/985/saison_id/2024"
+                "Arsenal" : "Arsenal",
+                "Chelsea" : "Chelsea",
+                "Liverpool" : "Liverpool", 
+                "Manchester City" : "Manchester City",
+                "Manchester United" : "Manchester United"
                 }
 
 laLiga = {
-        "Atletico Madrid" : "https://www.transfermarkt.com/atletico-madrid/spielplan/verein/13/saison_id/2024", 
-        "Barcelona" : "https://www.transfermarkt.com/fc-barcelona/spielplan/verein/131/saison_id/2024",
-        "Real Madrid" : "https://www.transfermarkt.com/real-madrid/spielplan/verein/418/saison_id/2024"
+        "Atletico Madrid" : "Atletico Madrid", 
+        "Barcelona" : "Barcelona",
+        "Real Madrid" : "Real Madrid"
         }
 
 bundesLiga = {
-            "Bayer Leverkusen" : "https://www.transfermarkt.com/bayer-04-leverkusen/spielplan/verein/15/saison_id/2024",
-            "Bayern Munich" : "https://www.transfermarkt.com/fc-bayern-munchen/spielplan/verein/27/saison_id/2024", 
-            "Borussia Dortmund" : "https://www.transfermarkt.com/borussia-dortmund/spielplan/verein/16/saison_id/2024", 
-            "Eintracht Frankfurt" : "https://www.transfermarkt.com/eintracht-frankfurt/spielplan/verein/24/saison_id/2024",
-            "Mainz" : "https://www.transfermarkt.com/1-fsv-mainz-05/spielplan/verein/39/saison_id/2024",
-            "RB Leipzig" : "https://www.transfermarkt.com/rasenballsport-leipzig/spielplan/verein/23826/saison_id/2024",
-            "Stuttgart" : "https://www.transfermarkt.com/vfb-stuttgart/spielplan/verein/79/saison_id/2024"
+            "Bayer Leverkusen" : "Bayer Leverkusen",
+            "Bayern Munchen" : "Bayern Munich", 
+            "Borussia Dortmund" : "Borussia Dortmund", 
+            "Eintracht Frankfurt" : "Eintracht Frankfurt",
+            "Mainz" : "Mainz",
+            "RB Leipzig" : "RB Leipzig",
+            "Stuttgart" : "Stuttgart"
             }
 
 serieA = {
-    "AC Milan" : "https://www.transfermarkt.com/ac-mailand/spielplan/verein/5/saison_id/2024", 
-    "Inter Milan" : "https://www.transfermarkt.com/inter-mailand/spielplan/verein/46/saison_id/2024",
-    "Juventus" : "https://www.transfermarkt.com/juventus-turin/spielplan/verein/506/saison_id/2024",
-    "Lazio" : "https://www.transfermarkt.com/lazio-rom/spielplan/verein/398/saison_id/2024",
-    "Napoli" : "https://www.transfermarkt.com/ssc-neapel/spielplan/verein/6195/saison_id/2024",
-    "Roma" : "https://www.transfermarkt.com/as-rom/spielplan/verein/12/saison_id/2024"
+    "AC Milan" : "AC Milan", 
+    "Inter Milan" : "Inter Milan",
+    "Juventus" : "Juventus",
+    "Lazio" : "Lazio",
+    "Napoli" : "Napoli",
+    "AS Roma" : "Roma"
         }   
 
 ligue1 = {
-        "Lille" : "https://www.transfermarkt.com/losc-lille/spielplan/verein/1082/saison_id/2024",
-        "Lyon" : "https://www.transfermarkt.com/olympique-lyon/spielplan/verein/1041/saison_id/2024",
-        "Marseille" : "https://www.transfermarkt.com/olympique-marseille/spielplan/verein/244/saison_id/2024",
-        "Monaco" : "https://www.transfermarkt.com/as-monaco/spielplan/verein/162/saison_id/2024",
-        "Nice" : "https://www.transfermarkt.com/ogc-nizza/spielplan/verein/417/saison_id/2024",
-        "Paris SG" : "https://www.transfermarkt.com/fc-paris-saint-germain/spielplan/verein/583/saison_id/2024"
+        "Lille" : "Lille",
+        "Lyon" : "Lyon",
+        "Olympique Marseille" : "Marseille",
+        "Monaco" : "Monaco",
+        "Nice" : "Nice",
+        "PSG" : "Paris SG"
         }
 
 leagues ={
@@ -66,6 +66,7 @@ teams_keys = []
 for d in [premierLeague, laLiga, bundesLiga, serieA, ligue1]:
     for key in d:
         teams_keys.append(key)
+teams_values = list(premierLeague.values()) + list(laLiga.values()) + list(bundesLiga.values()) + list(serieA.values()) + list(ligue1.values())
 played_matches = {key: 0 for key in teams_keys}
 won_matches = {key:0 for key in teams_keys}
 
@@ -159,29 +160,33 @@ def retrieve_data(index, img_path):
     sheet[f"G{index}"] = win
     sheet[f"H{index}"] = profit
 
-    if home in premierLeague or away in premierLeague:
-        league = "English_Premier_League"
-        
-    if home in laLiga or away in laLiga:
-        league = "Spanish_La_Liga"
-
-    if home in bundesLiga or away in bundesLiga:
-        league = "German_Bundesliga"
-        
-    if home in serieA or away in serieA:
-        league = "Italian_Serie_A"
-        
     if home in ligue1 or away in ligue1:
-        league = "French_Ligue_1"
-        
-    resp = requests.get(
-            "https://www.thesportsdb.com/api/v1/json/123/eventsday.php",
-            params={"d": formated_date, "l": league} )
-    data = resp.json()
+        url = f"https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d={formated_date}&l=French%20Ligue%201"
+        resp = requests.get(url)
+        data = resp.json()
+    else:
+        if home in premierLeague or away in premierLeague:
+            league = "English_Premier_League"
+            
+        if home in laLiga or away in laLiga:
+            league = "Spanish_La_Liga"
+
+        if home in bundesLiga or away in bundesLiga:
+            league = "German_Bundesliga"
+            
+        if home in serieA or away in serieA:
+            league = "Italian_Serie_A"
+
+        url = f"https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d={formated_date}&l={league}"
+        resp = requests.get(url)
+        data = resp.json()
 
     home_goals = ""
     away_goals = ""
     for event in data.get("events", []):
+        if home in teams_keys:
+            corresp = teams_keys.index(home)
+            home = teams_values[corresp]
         if home in event["strEvent"] or away in event["strEvent"]:
             home_goals = event.get("intHomeScore")
             away_goals = event.get("intAwayScore")
