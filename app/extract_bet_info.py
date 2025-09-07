@@ -21,7 +21,7 @@ premierLeague = {
                 }
 
 laLiga = {
-        "Atletico Madrid" : "Atletico Madrid", 
+        "Atletico Madrid" : "Atlético Madrid", 
         "Barcelona" : "Barcelona",
         "Real Madrid" : "Real Madrid"
         }
@@ -94,7 +94,7 @@ else:
     total_won = 0
     invested = 0
     sum_odds = 0
-    balance = 980
+    balance = 1000
 
     sheet["A1"] = "Date"
     sheet["B1"] = "Home"
@@ -187,6 +187,10 @@ def retrieve_data(index, img_path):
         if home in teams_keys:
             corresp = teams_keys.index(home)
             home = teams_values[corresp]
+        if away in teams_keys:
+            corresp = teams_keys.index(away)
+            away = teams_values[corresp]
+			
         if home in event["strEvent"] or away in event["strEvent"]:
             home_goals = event.get("intHomeScore")
             away_goals = event.get("intAwayScore")
