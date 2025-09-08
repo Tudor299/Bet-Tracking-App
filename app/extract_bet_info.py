@@ -47,7 +47,7 @@ serieA = {
 
 ligue1 = {
         "Lille" : "Lille",
-        "Lyon" : "Lyon",
+        "Olympique Lyon" : "Lyon",
         "Olympique Marseille" : "Marseille",
         "Monaco" : "Monaco",
         "Nice" : "Nice",
