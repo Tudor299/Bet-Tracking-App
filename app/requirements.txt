@@ -1,0 +1,6 @@
+easyocr
+fastapi
+uvicorn[standard]
+openpyxl
+requests
+python-multipart
