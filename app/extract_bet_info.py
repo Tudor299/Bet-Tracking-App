@@ -142,11 +142,13 @@ def retrieve_data(index, img_path):
     home = content[0]
     away = content[1]
     bet = content[3]
+    if bet == "7" or bet == "I":
+        bet = "1"
     odds = content[4]
     odds = float(odds)
     sum_odds += odds
-    wager = content[8]
-    wager = float(wager.replace("RON", "").strip().replace(",", "."))
+    wager = content[6]
+    wager = round(float(wager.replace("RON", "").replace(",", ".")), 2)
     invested += wager
     win = odds * wager
     profit = win - wager
@@ -160,26 +162,24 @@ def retrieve_data(index, img_path):
     sheet[f"G{index}"] = win
     sheet[f"H{index}"] = profit
 
+    if home in premierLeague or away in premierLeague:
+        league = 4328
+        
+    if home in laLiga or away in laLiga:
+        league = 4335
+
+    if home in bundesLiga or away in bundesLiga:
+        league = 4331
+        
+    if home in serieA or away in serieA:
+        league = 4332
+
     if home in ligue1 or away in ligue1:
-        url = f"https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d={formated_date}&l=French%20Ligue%201"
-        resp = requests.get(url)
-        data = resp.json()
-    else:
-        if home in premierLeague or away in premierLeague:
-            league = "English_Premier_League"
-            
-        if home in laLiga or away in laLiga:
-            league = "Spanish_La_Liga"
+        league = 4334
 
-        if home in bundesLiga or away in bundesLiga:
-            league = "German_Bundesliga"
-            
-        if home in serieA or away in serieA:
-            league = "Italian_Serie_A"
-
-        url = f"https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d={formated_date}&l={league}"
-        resp = requests.get(url)
-        data = resp.json()
+    url = f"https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d={formated_date}&l={league}"
+    resp = requests.get(url)
+    data = resp.json()
 
     home_goals = ""
     away_goals = ""
