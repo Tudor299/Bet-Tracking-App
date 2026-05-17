@@ -32,7 +32,7 @@ button {
 }
 
 .upload-div {
-  margin-top: 200px;
+  margin-top: 100px;
 }
 
 #add-bets-button {
@@ -42,18 +42,29 @@ button {
   width: 200px;
 }
 
+#refresh-bets-button {
+  background-color: #0d89c2;
+  font-size: 30px;
+  height: 100px;
+  width: 200px;   
+}
+
+.bets-div{
+  margin-top: 80px;
+}
+
+#show-bets-button {
+  background-color: #13c20d;
+  width: 200px;
+}
+
 .buttons-div {
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   gap: 20px;
   max-width: 400px;
   margin: auto;
-  margin-top: 120px;
-}
-
-#show-bets-button {
-  background-color: #c20d0d;
-  width: 200px;
+  margin-top: 100px;
 }
 
 #show-teams-stats-button {
@@ -61,10 +72,21 @@ button {
   width: 200px;
 }
 
+#show-teams-stats-detailed-button {
+  background-color: #c20d0d;
+  width: 200px;
+}
+
 .season-div {
-  margin-top: 50px;
+  margin-top: 30px;
+  gap: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 #season-select {
   font-size: 20px;
+  height: 20 px;
 }

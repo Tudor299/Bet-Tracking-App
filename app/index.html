@@ -21,14 +21,17 @@
 
   <div class="upload-div">
     <input id="file-input" type="file" accept="image/*" multiple style="display:none" />
-    <button id="add-bets-button">Add bet</button>
+    <button id="add-bets-button">Add bets</button>
+    <button id="refresh-bets-button" onclick="refreshPlacedBets()">Process bets</button>
+  </div>
+
+  <div class="bets-div">
+    <button id="show-bets-button" onclick="openPlacedBets()">Show all bets</button>
   </div>
 
   <div class="buttons-div">
-    <button id="show-bets-button" onclick="openPlacedBets()">Show all bets</button>
-    <button id="refresh-bets-button" onclick="refreshPlacedBets()">Refresh</button>
-    <button id="show-teams-stats-button" onclick="openTeamsStats()">Show teams statistics</button>
-    <button id="refresh-teams-stats-button" onclick="refreshTeamsStats()">Refresh</button>
+    <button id="show-teams-stats-button" onclick="openTeamsStats()">Team stats</button>
+    <button id="show-teams-stats-detailed-button" onclick="openDetailedStats()">Detailed stats</button>
   </div>
 
   <div class="season-div">
@@ -36,6 +39,7 @@
       <option value="2025/2026">2025/2026</option>
       <option value="2024/2025">2024/2025</option>
     </select>
+    <button id="refresh-teams-stats-button" onclick="refreshTeamsStats()">Refresh stats</button>
   </div>
 </body>
 
