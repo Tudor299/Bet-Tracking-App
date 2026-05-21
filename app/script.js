@@ -52,18 +52,18 @@ function openTeamsStats() {
     const ts = new Date().getTime();
     var season = document.getElementById('season-select').value;
     if (season == "2024/2025")
-        window.open('/static/view_table.html?file=/static/team_stats_2024_25.xlsx?ts=${ts}', '_blank');
+        window.open('/static/view_table.html?file=/static/team_stats_2024.xlsx?ts=${ts}', '_blank');
     else if (season == "2025/2026")
-        window.open('/static/view_table.html?file=/static/team_stats_2025_26.xlsx?ts=${ts}', '_blank');
+        window.open('/static/view_table.html?file=/static/team_stats_2025.xlsx?ts=${ts}', '_blank');
 }
 
 function openDetailedStats() {
     const ts = new Date().getTime();
     var season = document.getElementById('season-select').value;
     if (season == "2024/2025")
-        window.open('/static/view_table.html?file=/static/football_statistics_2024_25.xlsx?ts=${ts}', '_blank');
+        window.open('/static/view_table.html?file=/static/team_stats_2024_detailed.xlsx?ts=${ts}', '_blank');
     else if (season == "2025/2026")
-        window.open('/static/view_table.html?file=/static/football_statistics_2025_26.xlsx?ts=${ts}', '_blank');
+        window.open('/static/view_table.html?file=/static/team_stats_2025_detailed.xlsx?ts=${ts}', '_blank');
 }
 
 async function refreshTeamsStats() {
