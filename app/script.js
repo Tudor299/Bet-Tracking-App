@@ -48,7 +48,7 @@ async function refreshPlacedBets() {
     window.location.reload();
 }
 
-function openTeamsStats() {
+function openTeamStats() {
     const ts = new Date().getTime();
     var season = document.getElementById('season-select').value;
     if (season == "2024/2025")

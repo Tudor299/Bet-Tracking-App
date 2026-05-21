@@ -395,7 +395,7 @@ for k,v in leagues.items():
                 sheet[f"A{index+1}"] = "Ligue 1"
                 index += 2
         sheet[f"A{index}"] = i
-        sheet[f"B{index}"] = "2025/2026"
+        sheet[f"B{index}"] = str(season) + "/" + str(season+1)
         index +=1
 
 for col in sheet.columns:
