@@ -46,3 +46,8 @@ def get_teams_stats():
 def get_teams_stats():
     result = subprocess.run(["python3", "get_team_stats.py", "2025"], capture_output=True, text=True)
     return {"output": result.stdout}
+
+@app.get("/refresh_teams_26_27")
+def get_teams_stats():
+    result = subprocess.run(["python3", "get_team_stats.py", "2026"], capture_output=True, text=True)
+    return {"output": result.stdout}

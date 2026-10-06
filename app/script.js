@@ -55,6 +55,8 @@ function openTeamStats() {
         window.open('/static/view_table.html?file=/static/team_stats_2024.xlsx?ts=${ts}', '_blank');
     else if (season == "2025/2026")
         window.open('/static/view_table.html?file=/static/team_stats_2025.xlsx?ts=${ts}', '_blank');
+    else if (season == "2026/2027")
+        window.open('/static/view_table.html?file=/static/team_stats_2026.xlsx?ts=${ts}', '_blank');
 }
 
 function openDetailedStats() {
@@ -64,6 +66,8 @@ function openDetailedStats() {
         window.open('/static/view_table.html?file=/static/team_stats_2024_detailed.xlsx?ts=${ts}', '_blank');
     else if (season == "2025/2026")
         window.open('/static/view_table.html?file=/static/team_stats_2025_detailed.xlsx?ts=${ts}', '_blank');
+    else if (season == "2026/2027")
+        window.open('/static/view_table.html?file=/static/team_stats_2026_detailed.xlsx?ts=${ts}', '_blank');
 }
 
 async function refreshTeamsStats() {
@@ -75,6 +79,8 @@ async function refreshTeamsStats() {
         response = await fetch("http://127.0.0.1:8000/refresh_teams_24_25");
     else if (season == "2025/2026")
         response = await fetch("http://127.0.0.1:8000/refresh_teams_25_26");
+    else if (season == "2026/2027")
+        response = await fetch("http://127.0.0.1:8000/refresh_teams_26_27");
     button.disabled = false;
     button.textContent = "Refresh";
     window.location.reload();
